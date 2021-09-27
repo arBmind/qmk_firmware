@@ -453,6 +453,7 @@ void led_matrix_set_suspend_state(bool state) {
     if (state && !suspend_state && is_keyboard_master()) { // only run if turning off, and only once
         led_task_render(0);                                // turn off all LEDs when suspending
         led_task_flush(0);                                 // and actually flash led state to LEDs
+        led_task_sync();
     }
     suspend_state = state;
 #endif

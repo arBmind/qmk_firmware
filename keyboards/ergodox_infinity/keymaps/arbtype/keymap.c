@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 	// F-Keys + Navigation + Media + Backlight
 	[3] = LAYOUT_ergodox_pretty(
-			KC_MSTP, KC_MPLY, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, KC_MUTE,      KC_NO,   KC_NO,   KC_F10,  KC_F11,  KC_F12, BL_BRTG, KC_NO,
+			KC_MSTP, KC_MPLY, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, KC_MUTE,      KC_NO,   KC_NO,   KC_F10,  KC_F11,  KC_F12, BL_STEP, KC_NO,
 			KC_TAB,  KC_PGUP, KC_BSPC, KC_UP,   KC_DEL,  KC_PGDN, KC_NO,        KC_NO,   KC_NO,   KC_F7,   KC_F8,   KC_F9,  BL_INC,  KC_NO,
 			KC_RALT, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,                         KC_NO,   KC_F4,   KC_F5,   KC_F6,  BL_DEC,  KC_NO,
 			KC_LSFT, KC_ESC,  KC_TAB,  KC_INS,  KC_ENT,  KC_NO,   KC_SPC,       KC_NO,   KC_NO,   KC_F1,   KC_F2,   KC_F3,  BL_TOGG, KC_RSFT,

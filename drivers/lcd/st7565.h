@@ -29,13 +29,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define ST7565_DISPLAY_HEIGHT 32
 #endif
 #ifndef ST7565_MATRIX_SIZE
-#    define ST7565_MATRIX_SIZE (ST7565_DISPLAY_HEIGHT / 8 * ST7565_DISPLAY_WIDTH) // 1024 (compile time mathed)
+#    define ST7565_MATRIX_SIZE (ST7565_DISPLAY_HEIGHT / 8 * ST7565_DISPLAY_WIDTH)  // 512 (compile time mathed)
 #endif
 #ifndef ST7565_BLOCK_TYPE
 #    define ST7565_BLOCK_TYPE uint16_t
 #endif
 #ifndef ST7565_BLOCK_COUNT
-#    define ST7565_BLOCK_COUNT (sizeof(ST7565_BLOCK_TYPE) * 8) // 32 (compile time mathed)
+#    define ST7565_BLOCK_COUNT (sizeof(ST7565_BLOCK_TYPE) * 8)  // 16 (compile time mathed)
 #endif
 #ifndef ST7565_BLOCK_SIZE
 #    define ST7565_BLOCK_SIZE (ST7565_MATRIX_SIZE / ST7565_BLOCK_COUNT) // 32 (compile time mathed)
