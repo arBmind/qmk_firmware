@@ -138,6 +138,9 @@ static void transfer_matrix_values(matrix_row_t raw[], matrix_row_t cooked[], ui
                     existing_row ^= col_mask; // flip the bit.
                     cooked_changed = true;
                 }
+                else {
+                    *debounce_pointer = DEBOUNCE; // restart debounce
+                }
             }
             debounce_pointer++;
         }
