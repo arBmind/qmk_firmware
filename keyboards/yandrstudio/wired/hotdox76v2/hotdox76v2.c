@@ -1,8 +1,8 @@
 #include "hotdox76v2.h"
 #include <string.h>
 #include <transactions.h>
-// #include "oled_font_lib/logo.h"
-#include "oled_font_lib/logo2.h"
+#include "oled_font_lib/logo.h"
+// #include "oled_font_lib/logo2.h"
 #include "oled_font_lib/ext_font.h"
 
 
@@ -116,9 +116,9 @@ void render_logo(void) {
     for (i = 0; i < 4; ++i) {
         for (j = 0; j < 32; ++j) {
 #   ifdef I_AM_LEFT
-            oled_write_raw_byte(pgm_read_byte(&logo_mouse[i*32+j]), i*128+j);
+            oled_write_raw_byte(pgm_read_byte(&logo_idobao[i*32+j]), i*128+j);
 #   else
-            oled_write_raw_byte(pgm_read_byte(&logo_mouse[i*32+j]), i*128+j+96);
+            oled_write_raw_byte(pgm_read_byte(&logo_idobao[i*32+j]), i*128+j+96);
 #   endif
         }
     }
@@ -147,17 +147,25 @@ void render_layer(uint8_t layer) {
     render_layer_helper_fun(0, PSTR("LAYER:"), 12, 6);
     switch (layer) {
     case 0:
-        render_layer_helper_fun(1, PSTR("1:HOME"), 12, 6);
+        render_layer_helper_fun(1, PSTR("1:QWERTY"), 0, 8);
         break;
     case 1:
-        render_layer_helper_fun(1, PSTR("2:CODE"), 12, 6);
+        render_layer_helper_fun(1, PSTR("2:GAMING"), 0, 8);
         break;
     case 2:
-        render_layer_helper_fun(1, PSTR("3:OFFICE"), 0, 8);
+        render_layer_helper_fun(1, PSTR("3:BONE"), 12, 6);
         break;
     case 3:
+        render_layer_helper_fun(1, PSTR("4:F-KEYS"), 0, 8);
+        break;
+    case 4:
+        render_layer_helper_fun(1, PSTR("5:NUMPAD"), 0, 8);
+        break;
+    case 5:
+        render_layer_helper_fun(1, PSTR("6:M3"), 24, 4);
+        break;
     default:
-        render_layer_helper_fun(1, PSTR("4:OTHERS"), 0, 8);
+        render_layer_helper_fun(1, PSTR("X:OTHERS"), 0, 8);
         break;
     }
 }
@@ -201,7 +209,7 @@ bool oled_task_kb(void) {
 #   ifdef I_AM_LEFT
     render_layer(biton32(layer_state));
 #   else
-    render_cur_input();
+    // render_cur_input();
 #   endif
     return false;
 }
