@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     poetry2nix = {
-      url = "github:nix-community/poetry2nix/master";
+      url = "github:nix-community/poetry2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devshell = {
@@ -15,6 +15,7 @@
       };
     };
   };
+
   outputs = args@{ self, nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
@@ -23,6 +24,20 @@
           overlays = [
             args.devshell.overlay
             args.poetry2nix.overlay
+            (final: prev: {
+              python3 = prev.python3.override {
+                packageOverrides = self: super: {
+                  tomlkit = super.tomlkit.overridePythonAttrs(old: rec {
+                    version = "0.11.4";
+                    src = super.fetchPypi {
+                      inherit (old) pname;
+                      inherit version;
+                      sha256 = "sha256-MjWpAQ+uVDI+cnw6wG+3IHUv5mNbNCbjedrsYPvUSoM=";
+                    };
+                  });
+                };
+              };
+            })
           ];
         };
         inherit (pkgs) lib pkgsCross devshell;
@@ -109,7 +124,7 @@
                 category = "keymap";
                 help = "convert keymap json to c (json2c <keyboard> <layout>)";
                 command = ''
-                  keyboard=''${1:-ergodox_infinity}
+                  keyboard=''${1:-input_club/ergodox_infinity}
                   layout=''${2:-arbtype}
                   qmk json2c --output keyboards/''${keyboard}/keymaps/''${layout}/keymap.c keyboards/''${keyboard}/keymaps/''${layout}/''${layout}.json
                 '';
@@ -119,15 +134,31 @@
                 category = "flash";
                 help = ''
                   build and flash firmware for Ergodox Infinity
-                    ergodox <layout(arbtype*/default)> <left*/right>)
+                    ergodox <layout(arbtype*/default)>
                   '';
                 command = ''
                   # see keyboards/ergodox_infinity/readme.md
-                  keyboard=ergodox_infinity
+                  keyboard=input_club/ergodox_infinity
+                  layout=''${1:-arbtype}
+
+                  rm -rf .build
+                  qmk flash -kb ''${keyboard} -km ''${layout} -bl dfu-util
+                  '';
+              }
+              {
+                name = "ergodox-split";
+                category = "flash";
+                help = ''
+                  build and flash firmware for Ergodox Infinity to initialize EE_HANDS
+                    ergodox <layout(arbtype*/default)> <left*/right>
+                  '';
+                command = ''
+                  # see keyboards/ergodox_infinity/readme.md
+                  keyboard=input_club/ergodox_infinity
                   layout=''${1:-arbtype}
                   side=''${2:-left}
 
-                  # rm -rf .build
+                  rm -rf .build
                   qmk flash -kb ''${keyboard} -km ''${layout} -bl dfu-util-split-''${side}
                   '';
               }

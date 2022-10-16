@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 	// Numpad + Navigation + Media
 	[4] = LAYOUT_ergodox_pretty(
-			KC_MSTP, KC_MPLY, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, KC_MUTE,      KC_PSCR, KC_ESC,  KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, KC_NO,
+			KC_MSTP, KC_MPLY, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, KC_MUTE,      KC_PSCR, KC_ESC,  KC_NUM,  KC_PSLS, KC_PAST, KC_PMNS, KC_NO,
 			KC_TAB,  KC_PGUP, KC_BSPC, KC_UP,   KC_DEL,  KC_PGDN, DF(1),        KC_NO,   KC_TAB,  KC_P7,   KC_P8,   KC_P9,   KC_PPLS, KC_PMNS,
 			KC_RALT, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,                         KC_SPC,  KC_P4,   KC_P5,   KC_P6,   KC_LPRN, KC_RPRN,
 			KC_LSFT, KC_ESC,  KC_TAB,  KC_INS,  KC_ENT,  KC_NO,   KC_NO,        KC_NO,   KC_P0,   KC_P1,   KC_P2,   KC_P3,   KC_PENT, KC_RSFT,
